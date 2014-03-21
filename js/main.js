@@ -1,11 +1,11 @@
 /* Here we run the awesome */
 
-var container = document.getElementById('container');
+var container = document.getElementById(container='container');
 var slider;
 var imgList;
 
 var main = function() {
-	var img = new Image('img/1.jpg', '/teste/', subtitle=null, 'teste alt', active=true);
+	var img = new Image(src='img/1.jpg', toUrl='/teste/', subtitle=null, alt='teste alt');
 	var img2 = new Image('img/1.jpg');
 	imgList = [img, img2];
 

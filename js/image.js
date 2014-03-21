@@ -8,9 +8,6 @@ var Image = function(src, toUrl, subtitle, alt) {
 	if(toUrl) this.toUrl = toUrl;
 	if(!toUrl) this.toUrl = "#";
 
-	if(active) this.active = true;
-	if(!active) this.active = false;
-
 	if(subtitle) this.subtitle = subtitle;  
 	
 	if(alt) this.alt = alt;

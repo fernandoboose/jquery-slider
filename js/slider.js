@@ -10,12 +10,12 @@ var Slider = function(containerId, imgList, arrowRightId, arrowLeftId) {
 		and test them with differents parent div size.
 	*/
 
-	// this.width = this.$container.offsetWidth;
-	// this.height = this.$container.offsetHeight;
+	this.width = this.$container.offsetWidth;
+	this.height = this.$container.offsetHeight;
 
 	this.imgList = imgList;
 
-}
+};
 
 /* Setters */
 
@@ -54,7 +54,6 @@ Slider.prototype.getImgList = function() {
 
 //Render the images in imgList array inside container <ul> element.
 Slider.prototype.renderElements = function() {
-	//TODO -> render image elements inside the parent container
 	var htmlCode = "";
 	var link;
 	var parentObject = document.createElement('ul');
@@ -67,7 +66,6 @@ Slider.prototype.renderElements = function() {
 		htmlCode = "<a href = '" + imgList[i].getLinkUrl() + "'>" + imgList[i].getImage() + "</a>";
 		childObject.innerHTML = htmlCode;
 	}
-	//parentObject.innerHTML = htmlCode; 
 	this.$container.appendChild(parentObject);
 };
 
