@@ -1,6 +1,6 @@
 This slider is built with SASS and native Javascript.
 
-Feel free to use it on your projects and to contribute too. :)
+Feel free to use on your projects and don't forget to contribute too. :)
 
 
-Developed by Fernando Boose @ Lamplight IT.
+Developed by [Fernando Boose](http://twitter.com/misfitcoder) @ [Lamplight IT](http://www.lamplight.com.br).
