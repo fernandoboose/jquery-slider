@@ -71,6 +71,12 @@ Slider.prototype.renderElements = function() {
 
 Slider.prototype.rotate = function(direction) {
 	//TODO -> rotate(slide) image elements inside the parent container, following the correct direction
+	var active = document.querySelector('.active');
+	active.nextElementSibling;
 
+};
 
+//TODO -> Slider with fade in/out parameter
+Slider.prototype.fade = function(direction) {
+	// body...
 };

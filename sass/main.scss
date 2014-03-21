@@ -5,19 +5,6 @@ html, body {
 	margin: 0px;
 }
 
-ul {
-	@include z-index(100);
-
-	margin: 0px;
-	padding: 0px;
-
-}
-
-li {
-	display: block;
-	position: absolute;
-}
-
 a {
 
 }
@@ -28,19 +15,31 @@ a {
 }
 
 .slider {
-	width: 100%;
-	height: 100%;
+	width: 560px;
+	height: 560px;
+	margin: 0 auto;
+	white-space: nowrap;
 }
 
 #container {
 	width: 100%;
 	height: 100%;
-	// overflow: hidden;
+	overflow: hidden;
 }
 
 img, a {
 	width: 100%;
 	height: 100%;
+}
+
+li {
+	display: inline;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+
 }
 
 .arrow {

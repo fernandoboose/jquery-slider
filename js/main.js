@@ -6,7 +6,7 @@ var imgList;
 
 var main = function() {
 	var img = new Image(src='img/1.jpg', toUrl='/teste/', subtitle=null, alt='teste alt');
-	var img2 = new Image('img/1.jpg');
+	var img2 = new Image('img/2.jpg');
 	imgList = [img, img2];
 
 	slider = new Slider(container, imgList);
@@ -14,7 +14,7 @@ var main = function() {
 	//The code below is pure magical <3
 
 	slider.renderElements(); //render the images and respective html elements on the screen
-
+	slider.rotate();
 };
 
 main();
