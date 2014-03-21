@@ -11,6 +11,7 @@ var Image = function(src, toUrl, subtitle, alt) {
 	if(subtitle) this.subtitle = subtitle;  
 	
 	if(alt) this.alt = alt;
+	alert(alt);
 
 };
 
@@ -27,7 +28,8 @@ Image.prototype.setImage = function(src, toUrl, subtitle, alt) {
 
 // Returns a html element <img>.
 Image.prototype.getImage = function() {
-	var img = "<img src = " + this.src + " alt = " + this.alt + " />"
+	if(!this.alt) this.alt = "";
+	var img = "<img src = '" + this.src + "' alt = '" + this.alt + "'>"
 	return img;
 };
 
@@ -35,4 +37,8 @@ Image.prototype.getImage = function() {
 Image.prototype.getSubtitle = function() {
 	var sub = "<span class = 'subtitle'>" + this.subtitle + "</span>";
 	return sub;
+};
+
+Image.prototype.getLinkUrl = function() {
+	return this.toUrl;
 };

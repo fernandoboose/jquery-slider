@@ -5,7 +5,7 @@ var slider;
 var imgList;
 
 var main = function() {
-	var img = new Image('img/1.jpg', '/teste/');
+	var img = new Image('img/1.jpg', '/teste/', null, 'teste alt');
 	var img2 = new Image('img/1.jpg');
 	imgList = [img, img2];
 

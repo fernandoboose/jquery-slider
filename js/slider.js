@@ -57,7 +57,7 @@ Slider.prototype.renderElements = function() {
 	var parentObject = document.createElement('ul');
 
 	for(i = 0; i < this.imgList.length; i++){
-		htmlCode += "<li><a href = '" + imgList[i].toUrl + "'><img src = '" + imgList[i].src + "' alt = '" + imgList[i].alt + "' /></a></li>";
+		htmlCode += "<li><a href = '" + imgList[i].getLinkUrl() + "'>" + imgList[i].getImage() + "</a></li>";
 	}
 	parentObject.innerHTML = htmlCode; 
 	this.$container.appendChild(parentObject);
