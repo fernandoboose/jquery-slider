@@ -1,17 +1,17 @@
-/* Here we load the awesome */
+/* Here we run the awesome */
 
 var container = document.getElementById('container');
 var slider;
 var imgList;
 
 var main = function() {
-	var img = new Image('img/1.jpg', '/teste/', null, 'teste alt');
+	var img = new Image('img/1.jpg', '/teste/', subtitle=null, 'teste alt', active=true);
 	var img2 = new Image('img/1.jpg');
 	imgList = [img, img2];
 
 	slider = new Slider(container, imgList);
 
-	//The code below here is pure magical <3
+	//The code below is pure magical <3
 
 	slider.renderElements(); //render the images and respective html elements on the screen
 

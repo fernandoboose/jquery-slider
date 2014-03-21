@@ -1,11 +1,14 @@
 /* Class Slider */
 
 var Slider = function(containerId, imgList, arrowRightId, arrowLeftId) {
-	this.$container = containerId; //document.getElementById("container");
+	this.$container = containerId; 
 	if(arrowRightId) this.$arrowRight = arrowRightId;
 	if(arrowLeftId) this.$arrowLeft = arrowLeftId;
 	
-	//TODO -> set arrows that r inside $container parent.
+	/* 
+		TODO -> set arrows that r inside $container parent, set this.width and this.height correctly
+		and test them with differents parent div size.
+	*/
 
 	// this.width = this.$container.offsetWidth;
 	// this.height = this.$container.offsetHeight;
@@ -47,7 +50,7 @@ Slider.prototype.getImgList = function() {
 	return imgList;
 };
 
-/* Animations */
+/* Screen */
 
 //Render the images in imgList array inside container <ul> element.
 Slider.prototype.renderElements = function() {
@@ -55,14 +58,21 @@ Slider.prototype.renderElements = function() {
 	var htmlCode = "";
 	var link;
 	var parentObject = document.createElement('ul');
+	var childObject;
 
-	for(i = 0; i < this.imgList.length; i++){
-		htmlCode += "<li><a href = '" + imgList[i].getLinkUrl() + "'>" + imgList[i].getImage() + "</a></li>";
+	for(var i = 0; i < this.imgList.length; i++){
+		childObject = document.createElement('li');
+		if(i == 0) childObject.className = 'active';
+		parentObject.appendChild(childObject);
+		htmlCode = "<a href = '" + imgList[i].getLinkUrl() + "'>" + imgList[i].getImage() + "</a>";
+		childObject.innerHTML = htmlCode;
 	}
-	parentObject.innerHTML = htmlCode; 
+	//parentObject.innerHTML = htmlCode; 
 	this.$container.appendChild(parentObject);
 };
 
 Slider.prototype.rotate = function(direction) {
 	//TODO -> rotate(slide) image elements inside the parent container, following the correct direction
+
+
 };
