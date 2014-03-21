@@ -1,13 +1,23 @@
 /* Here we load the awesome */
 
 var container = document.getElementById('container');
-var imgs = ['img1', 'img2'];
+var slider;
+var imgList;
 
-slider = new Slider(container, imgs);
-alert(slider.getDimensions());
+var main = function() {
+	var img = new Image('img/1.jpg', '/teste/');
+	var img2 = new Image('img/1.jpg');
+	imgList = [img, img2];
 
+	slider = new Slider(container, imgList);
 
+	//The code below here is pure magical <3
 
+	slider.renderElements(); //render the images and respective html elements on the screen
+
+};
+
+main();
 
 
 

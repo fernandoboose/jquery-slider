@@ -7,8 +7,8 @@ var Slider = function(containerId, imgList, arrowRightId, arrowLeftId) {
 	
 	//TODO -> set arrows that r inside $container parent.
 
-	this.width = this.$container.offsetWidth;
-	this.height = this.$container.offsetHeight;
+	// this.width = this.$container.offsetWidth;
+	// this.height = this.$container.offsetHeight;
 
 	this.imgList = imgList;
 
@@ -25,6 +25,13 @@ Slider.prototype.setDimensions = function(width, height) {
 	this.height = height;
 };
 
+//Set a array with images objects
+Slider.prototype.setImgList = function(arr) {
+	for(var i = 0; i < arr.length; i++) {
+		this.imgList[i] = arr[i];
+	}
+};
+
 /* Getters */
 
 Slider.prototype.getContainer = function() {
@@ -35,8 +42,27 @@ Slider.prototype.getDimensions = function() {
 	return [this.width, this.height];
 };
 
+//Returns an array with image objects
+Slider.prototype.getImgList = function() {
+	return imgList;
+};
+
 /* Animations */
 
+//Render the images in imgList array inside container <ul> element.
+Slider.prototype.renderElements = function() {
+	//TODO -> render image elements inside the parent container
+	var htmlCode = "";
+	var link;
+	var parentObject = document.createElement('ul');
+
+	for(i = 0; i < this.imgList.length; i++){
+		htmlCode += "<li><a href = '" + imgList[i].toUrl + "'><img src = '" + imgList[i].src + "' alt = '" + imgList[i].alt + "' /></a></li>";
+	}
+	parentObject.innerHTML = htmlCode; 
+	this.$container.appendChild(parentObject);
+};
+
 Slider.prototype.rotate = function(direction) {
-	// body...
+	//TODO -> rotate(slide) image elements inside the parent container, following the correct direction
 };
