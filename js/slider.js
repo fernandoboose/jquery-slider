@@ -79,40 +79,49 @@ Slider.prototype.renderElements = function() {
 Slider.prototype.rotate = function(direction) {
 	//TODO -> rotate(slide) image elements inside the parent container, following the correct direction
 
-	var active = document.querySelector('.active');
+	//TODO -> Fix bug(third slide animation is too slow), we need all the elements geting the 
+	// same right value then the others. maybe a foreach or something.
+
 	var dimension = this.getDimensions();
+	var allImages = document.querySelectorAll('li');
+	var active = document.querySelector('li.active');
+	var previous = active.previousSibling;
+	var next = active.nextSibling;
 
-	// active.style.right =  active.style.right + dimension[0];
+	[].forEach.call(allImages,
+		function (e) {
+			// if(e.className)
+        	// e.style.right += dimension[0];
+    	}
+	);
 
-	var teste = active.nextSibling;
+	if(!previous) {
+		//first element
+		active.style.right = dimension[0];
+		next.style.right = dimension[0];
 
-	if(!active.previousSibling) {
-		active.style.right = dimension[0];	
-		teste.style.right = dimension[0];
-	} else if(!active.nextSibling) {
-		return false;
+		active.classList.remove('active');
+		next.classList.add('active');
+	} else if(previous && next) {
+		//midle elements
+		previousRightVal = parseInt(previous.style.right);
+		activeRightVal = parseInt(active.style.right);
+		nextRightVal = parseInt(next.style.right);
+
+		newDimension = parseInt(dimension[0]);
+
+		active.style.right = previousRightVal + newDimension;
+		next.style.right = activeRightVal + newDimension;
+		// previous.style.right = activeRightVal - newDimension;
+
+		active.classList.remove('active');
+		next.classList.add('active');
+
+	} 
+	else if(!next){
+		//last element
 	}
-	else {
-		// active.style.right += dimension[0] * 2;
-		teste.style.right += dimension[0] * 2;
-		//alert(teste.style.position);
-	}
 
-	active.classList.remove('active');
-	teste.classList.add('active');
-
-	// alert(active);
-
-	// [].forEach.call(active,
-	// 	function (e) {
-	// 		if(direction == 'right') { 
-	// 			e.setAttribute('class', 'right');
-	// 		}
-	// 		// if(dimension == 'right') e.style.right = 0;
-	// 		// alert(e.getAttribute('class'));
- //        	e.style.right += dimension[0];
- //    	}
-	//);
 };
 
 //TODO -> Slider with fade in/out parameter
