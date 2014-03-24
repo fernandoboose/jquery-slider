@@ -4,6 +4,8 @@ var Slider = function(containerId, imgList, arrowRightId, arrowLeftId) {
 	this.$container = containerId; 
 	if(arrowRightId) this.$arrowRight = arrowRightId;
 	if(arrowLeftId) this.$arrowLeft = arrowLeftId;
+
+	this.interval;
 	
 	/* 
 		TODO -> set arrows that r inside $container parent, set this.width and this.height correctly
@@ -47,7 +49,12 @@ Slider.prototype.getDimensions = function() {
 
 //Returns an array with image objects
 Slider.prototype.getImgList = function() {
-	return imgList;
+	return this.imgList;
+};
+
+Slider.prototype.getActiveImage = function() {
+	var active = document.querySelector('.active', this.$container);
+	return active;
 };
 
 /* Screen */
@@ -71,9 +78,41 @@ Slider.prototype.renderElements = function() {
 
 Slider.prototype.rotate = function(direction) {
 	//TODO -> rotate(slide) image elements inside the parent container, following the correct direction
-	var active = document.querySelector('.active');
-	active.nextElementSibling;
 
+	var active = document.querySelector('.active');
+	var dimension = this.getDimensions();
+
+	// active.style.right =  active.style.right + dimension[0];
+
+	var teste = active.nextSibling;
+
+	if(!active.previousSibling) {
+		active.style.right = dimension[0];	
+		teste.style.right = dimension[0];
+	} else if(!active.nextSibling) {
+		return false;
+	}
+	else {
+		// active.style.right += dimension[0] * 2;
+		teste.style.right += dimension[0] * 2;
+		//alert(teste.style.position);
+	}
+
+	active.classList.remove('active');
+	teste.classList.add('active');
+
+	// alert(active);
+
+	// [].forEach.call(active,
+	// 	function (e) {
+	// 		if(direction == 'right') { 
+	// 			e.setAttribute('class', 'right');
+	// 		}
+	// 		// if(dimension == 'right') e.style.right = 0;
+	// 		// alert(e.getAttribute('class'));
+ //        	e.style.right += dimension[0];
+ //    	}
+	//);
 };
 
 //TODO -> Slider with fade in/out parameter
