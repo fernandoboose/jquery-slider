@@ -8,8 +8,9 @@ var main = function() {
 	var img = new Image(src='img/1.jpg', toUrl='/teste/', subtitle=null, alt='teste alt');
 	var img2 = new Image('img/2.jpg');
 	var img3 = new Image('img/1.jpg')
+	var img4 = new Image('img/2.jpg')
 
-	imgList = [img, img2, img3];
+	imgList = [img, img2, img3, img4];
 
 	slider = new Slider($container, imgList);
 
@@ -19,8 +20,13 @@ var main = function() {
 
 	var arrowRight = document.querySelector('.arrow.right');
 	var arrowLeft = document.querySelector('.arrow.left');
+
 	arrowRight.onclick = function(e){
 		slider.rotate('right');
+	}
+
+	arrowLeft.onclick = function(e){
+		slider.rotate('left');
 	}
 };
 

@@ -61,6 +61,7 @@ Slider.prototype.getActiveImage = function() {
 
 //Render the images in imgList array inside container <ul> element.
 Slider.prototype.renderElements = function() {
+
 	var htmlCode = "";
 	var link;
 	var parentObject = document.createElement('ul');
@@ -77,10 +78,6 @@ Slider.prototype.renderElements = function() {
 };
 
 Slider.prototype.rotate = function(direction) {
-	//TODO -> rotate(slide) image elements inside the parent container, following the correct direction
-
-	//TODO -> Fix bug(third slide animation is too slow), we need all the elements geting the 
-	// same right value then the others. maybe a foreach or something.
 
 	var dimension = this.getDimensions();
 	var allImages = document.querySelectorAll('li');
@@ -88,38 +85,47 @@ Slider.prototype.rotate = function(direction) {
 	var previous = active.previousSibling;
 	var next = active.nextSibling;
 
-	[].forEach.call(allImages,
-		function (e) {
-			// if(e.className)
-        	// e.style.right += dimension[0];
-    	}
-	);
-
 	if(!previous) {
-		//first element
-		active.style.right = dimension[0];
-		next.style.right = dimension[0];
+		//first right element, last left element
+		var last = allImages[allImages.length - 1];
+
+		[].forEach.call(allImages,
+		function (e) {	
+			if (direction == 'right') e.style.right = dimension[0]; 
+			else if (direction == 'left') e.style.right = dimension[0] * (allImages.length - 1);
+		});
 
 		active.classList.remove('active');
-		next.classList.add('active');
+		if (direction == 'right') next.classList.add('active');
+		else if (direction == 'left') last.classList.add('active');
+
 	} else if(previous && next) {
 		//midle elements
-		previousRightVal = parseInt(previous.style.right);
-		activeRightVal = parseInt(active.style.right);
-		nextRightVal = parseInt(next.style.right);
 
-		newDimension = parseInt(dimension[0]);
-
-		active.style.right = previousRightVal + newDimension;
-		next.style.right = activeRightVal + newDimension;
-		// previous.style.right = activeRightVal - newDimension;
+		[].forEach.call(allImages,
+		function (e) {	
+			if (direction == 'right') e.style.right = parseInt(e.style.right) + dimension[0]; 
+			else if (direction == 'left') e.style.right = parseInt(e.style.right) - dimension[0]; 
+		});
 
 		active.classList.remove('active');
-		next.classList.add('active');
-
+		if (direction == 'right') next.classList.add('active');
+		else if (direction == 'left')	previous.classList.add('active');
 	} 
 	else if(!next){
-		//last element
+		//last right element, first left element
+		
+		var first = allImages[0];
+
+		[].forEach.call(allImages,
+		function (e) {	
+			if (direction == 'right') e.style.right = 0;
+			else if (direction == 'left') e.style.right = parseInt(e.style.right) - dimension[0]; 
+		});
+
+		active.classList.remove('active');
+		if (direction == 'right') first.classList.add('active');
+		else if (direction == 'left') previous.classList.add('active');
 	}
 
 };
