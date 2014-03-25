@@ -6,11 +6,6 @@ var Slider = function(containerId, imgList, arrowRightId, arrowLeftId) {
 	if(arrowLeftId) this.$arrowLeft = arrowLeftId;
 
 	this.interval;
-	
-	/* 
-		TODO -> set arrows that r inside $container parent, set this.width and this.height correctly
-		and test them with differents parent div size.
-	*/
 
 	this.width = this.$container.offsetWidth;
 	this.height = this.$container.offsetHeight;
@@ -91,41 +86,41 @@ Slider.prototype.rotate = function(direction) {
 
 		[].forEach.call(allImages,
 		function (e) {	
-			if (direction == 'right') e.style.right = dimension[0]; 
-			else if (direction == 'left') e.style.right = dimension[0] * (allImages.length - 1);
+			if(direction == 'right') e.style.right = dimension[0]; 
+			else if(direction == 'left') e.style.right = dimension[0] * (allImages.length - 1);
 		});
 
 		active.classList.remove('active');
-		if (direction == 'right') next.classList.add('active');
-		else if (direction == 'left') last.classList.add('active');
+		if(direction == 'right') next.classList.add('active');
+		else if(direction == 'left') last.classList.add('active');
 
 	} else if(previous && next) {
 		//midle elements
 
 		[].forEach.call(allImages,
 		function (e) {	
-			if (direction == 'right') e.style.right = parseInt(e.style.right) + dimension[0]; 
-			else if (direction == 'left') e.style.right = parseInt(e.style.right) - dimension[0]; 
+			if(direction == 'right') e.style.right = parseInt(e.style.right) + dimension[0]; 
+			else if(direction == 'left') e.style.right = parseInt(e.style.right) - dimension[0]; 
 		});
 
 		active.classList.remove('active');
-		if (direction == 'right') next.classList.add('active');
-		else if (direction == 'left')	previous.classList.add('active');
+		if(direction == 'right') next.classList.add('active');
+		else if(direction == 'left')	previous.classList.add('active');
 	} 
 	else if(!next){
 		//last right element, first left element
-		
+
 		var first = allImages[0];
 
 		[].forEach.call(allImages,
 		function (e) {	
-			if (direction == 'right') e.style.right = 0;
-			else if (direction == 'left') e.style.right = parseInt(e.style.right) - dimension[0]; 
+			if(direction == 'right') e.style.right = 0;
+			else if(direction == 'left') e.style.right = parseInt(e.style.right) - dimension[0]; 
 		});
 
 		active.classList.remove('active');
-		if (direction == 'right') first.classList.add('active');
-		else if (direction == 'left') previous.classList.add('active');
+		if(direction == 'right') first.classList.add('active');
+		else if(direction == 'left') previous.classList.add('active');
 	}
 
 };

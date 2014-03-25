@@ -21,9 +21,6 @@ html, body {
   height: 100%; }
 
 .slider {
-  width: 560px;
-  height: 560px;
-  margin: 0 auto;
   white-space: nowrap; }
 
 #container {
