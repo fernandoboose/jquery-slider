@@ -80,6 +80,8 @@ Slider.prototype.rotate = function(direction) {
 	var previous = active.previousSibling;
 	var next = active.nextSibling;
 
+	active.classList.remove('active');
+
 	if(!previous) {
 		//first right element, last left element
 		var last = allImages[allImages.length - 1];
@@ -90,7 +92,6 @@ Slider.prototype.rotate = function(direction) {
 			else if(direction == 'left') e.style.right = dimension[0] * (allImages.length - 1);
 		});
 
-		active.classList.remove('active');
 		if(direction == 'right') next.classList.add('active');
 		else if(direction == 'left') last.classList.add('active');
 
@@ -103,7 +104,6 @@ Slider.prototype.rotate = function(direction) {
 			else if(direction == 'left') e.style.right = parseInt(e.style.right) - dimension[0]; 
 		});
 
-		active.classList.remove('active');
 		if(direction == 'right') next.classList.add('active');
 		else if(direction == 'left')	previous.classList.add('active');
 	} 
@@ -118,7 +118,6 @@ Slider.prototype.rotate = function(direction) {
 			else if(direction == 'left') e.style.right = parseInt(e.style.right) - dimension[0]; 
 		});
 
-		active.classList.remove('active');
 		if(direction == 'right') first.classList.add('active');
 		else if(direction == 'left') previous.classList.add('active');
 	}
