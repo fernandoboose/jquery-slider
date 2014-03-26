@@ -52,7 +52,22 @@ Slider.prototype.getActiveImage = function() {
 	return active;
 };
 
+
 /* Screen */
+
+//check if the window has resized, and change the current slider dimension, it also set the slider to his initial position.
+Slider.prototype.setResize = function() {
+	var allImages = document.querySelectorAll('li');
+
+	this.width = this.$container.offsetWidth;
+	this.height = this.$container.offsetHeight;
+
+	[].forEach.call(allImages,
+		function (e) {	
+			e.style.right = 0;
+		});
+
+};
 
 //Render the images in imgList array inside container <ul> element.
 Slider.prototype.renderElements = function() {

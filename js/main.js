@@ -1,6 +1,6 @@
 /* Here we run the awesome */
 
-var $container = document.getElementById(container='container');
+var $container = document.getElementById('container');
 var $arrowRight = document.querySelector('.arrow.right', $container);
 var $arrowLeft = document.querySelector('.arrow.left', $container);
 var slider;
@@ -16,9 +16,11 @@ var main = function() {
 
 	slider = new Slider($container, imgList);
 
-	//The code below is pure magical <3
+	//The code below is pure magical <3 - don't touch it if you don't know what ur doing :)
 
 	slider.renderElements(); //render the images and respective html elements on the screen
+
+	window.onresize=function(){ slider.setResize() };
 
 	$arrowRight.onclick = function(e){
 		slider.rotate('right');
