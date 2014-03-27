@@ -55,7 +55,7 @@ Slider.prototype.getActiveImage = function() {
 
 /* Screen */
 
-//check if the window has resized, and change the current slider dimension, it also set the slider to his initial position.
+//change the current slider dimension, it also set the slider to his initial position.
 Slider.prototype.setResize = function() {
 	var allImages = document.querySelectorAll('li');
 	var active = document.querySelector('li.active');
@@ -63,13 +63,11 @@ Slider.prototype.setResize = function() {
 
 	if(this.$container.offsetWidth == viewport) {
 		//if the slider width is 100% or the fixed width matches with the viewport size
-		this.width = this.$container.offsetWidth;
-		this.height = this.$container.offsetHeight;
+		
+		this.setDimensions(this.$container.offsetWidth, this.$container.offsetHeight);
 
 		[].forEach.call(allImages,
-			function (e) {	
-				e.style.right = 0;
-			});
+			function (e) {	e.style.right = 0; });
 
 		active.classList.remove('active');
 		allImages[0].classList.add('active');
