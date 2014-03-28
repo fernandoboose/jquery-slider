@@ -1,11 +1,24 @@
 /* Class Slider */
 
-var Slider = function(containerId, imgList, arrowRightId, arrowLeftId) {
-	this.$container = containerId; 
-	if(arrowRightId) this.$arrowRight = arrowRightId;
-	if(arrowLeftId) this.$arrowLeft = arrowLeftId;
+var Slider = function(containerId, imgList, timeInterval, arrowRightId, arrowLeftId) {
+	this.$container = containerId;
+	
+	if(arrowRightId) { 
+		this.$arrowRight = document.querySelector('#'+arrowRightId, $container);
+	} else { 
+		this.$arrowRight = document.querySelector('.arrow.right', $container);	
+	}
 
-	this.interval;
+	if(arrowLeftId) {
+		this.$arrowLeft = document.querySelector('#'+arrowLeftId, $container);
+	} else {
+		this.$arrowLeft = document.querySelector('.arrow.left', $container);
+	}
+
+	if(timeInterval) this.timeInterval = timeInterval;
+	else this.timeInterval = 10000; //10 seconds
+
+	this.interval = null;
 
 	this.width = this.$container.offsetWidth;
 	this.height = this.$container.offsetHeight;
@@ -32,6 +45,10 @@ Slider.prototype.setImgList = function(arr) {
 	}
 };
 
+Slider.prototype.setTimeInterval = function(timeInterval) {
+	this.timeInterval = timeInterval;
+};
+
 /* Getters */
 
 Slider.prototype.getContainer = function() {
@@ -52,8 +69,32 @@ Slider.prototype.getActiveImage = function() {
 	return active;
 };
 
+Slider.prototype.getTimeInterval = function() {
+	return this.timeInterval;
+};
+
+Slider.prototype.getArrow = function(direction) {
+	if(direction == 'right') return this.$arrowRight;
+	else if(direction == 'left') return this.$arrowLeft;
+
+	return false;
+};
+
 
 /* Screen */
+
+Slider.prototype.beginInterval = function(direction, timeInterval) {
+	var that = this; //keeps the reference of the current object
+	if(timeInterval) this.setTimeInterval(timeInterval);
+	if(!direction) direction = 'right';
+	this.interval = setInterval(function(){ that.rotate(direction) }, this.timeInterval);
+	return this.interval;
+};
+
+//reset the interval when some arrow function is called
+Slider.prototype.resetInterval = function() {
+	clearInterval(this.interval);
+};
 
 //change the current slider dimension, it also set the slider to his initial position.
 Slider.prototype.setResize = function() {

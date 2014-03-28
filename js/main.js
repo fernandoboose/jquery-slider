@@ -1,10 +1,7 @@
 /* Here we run the awesome */
 
 var $container = document.getElementById('container');
-var $arrowRight = document.querySelector('.arrow.right', $container);
-var $arrowLeft = document.querySelector('.arrow.left', $container);
-var slider;
-var imgList;
+var slider, imgList, $arrowRight, $arrowLeft;
 
 var main = function() {
 	var img = new Image(src='img/1.jpg', toUrl='/teste/', subtitle=null, alt='teste alt');
@@ -15,6 +12,9 @@ var main = function() {
 	imgList = [img, img2, img3, img4];
 
 	slider = new Slider($container, imgList);
+	$arrowRight = slider.getArrow('right');
+	$arrowLeft = slider.getArrow('left');
+
 
 	//The code below is pure magical <3 - don't touch it if you don't know what ur doing :)
 
@@ -22,16 +22,12 @@ var main = function() {
 
 	window.onresize=function(){ slider.setResize() };
 
-	//rotate the slide to the left every 10 seconds. comment or remove it if you don't want an auto-rotation
-	setInterval(function(){slider.rotate('right')}, 10000);
+	slider.beginInterval();
+	//rotate the slide to the right every 10 seconds. comment or remove it if you don't want an auto-rotation
+	// setInterval(function(){slider.rotate('right')}, 10000);
 
-	$arrowRight.onclick = function(e){
-		slider.rotate('right');
-	}
-
-	$arrowLeft.onclick = function(e){
-		slider.rotate('left');
-	}
+	$arrowRight.onclick = function(e){ slider.rotate('right'); slider.resetInterval();  }
+	$arrowLeft.onclick = function(e){ slider.rotate('left'); slider.resetInterval();  }
 };
 
 main();
