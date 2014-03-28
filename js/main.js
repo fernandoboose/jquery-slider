@@ -22,6 +22,9 @@ var main = function() {
 
 	window.onresize=function(){ slider.setResize() };
 
+	//rotate the slide to the left every 10 seconds. comment or remove it if you don't want an auto-rotation
+	setInterval(function(){slider.rotate('right')}, 10000);
+
 	$arrowRight.onclick = function(e){
 		slider.rotate('right');
 	}

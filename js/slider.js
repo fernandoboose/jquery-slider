@@ -142,7 +142,6 @@ Slider.prototype.rotate = function(direction) {
 		if(direction == 'right') first.classList.add('active');
 		else if(direction == 'left') previous.classList.add('active');
 	}
-
 };
 
 //TODO -> Slider with fade in/out parameter
