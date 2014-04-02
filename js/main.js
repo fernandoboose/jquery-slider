@@ -20,7 +20,7 @@ var main = function() {
 	slider.renderElements(); //render the images and respective html elements on the screen
 	slider.beginInterval(); // Auto rotate the slider. comment or remove it if you don't want an auto-rotation 
 
-	window.onresize=function(){ slider.setResize() }; // Auto resize the slider when viewport dimensions change
+	window.onresize = function() { slider.setResize() }; // Auto resize the slider when viewport dimensions change
 
 	// Mouse events
 	$arrowRight.onclick = function(e) {	slider.rotate('right');	} // rotate slider to the right
