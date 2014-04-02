@@ -11,7 +11,7 @@ var main = function() {
 
 	imgList = [img, img2, img3, img4];
 
-	slider = new Slider(containerId=$container, imgList=imgList);
+	slider = new Slider(containerId=$container, imgList=imgList, 3000);
 	$arrowRight = slider.getArrow('right');
 	$arrowLeft = slider.getArrow('left');
 
@@ -23,8 +23,8 @@ var main = function() {
 	window.onresize=function(){ slider.setResize() }; // Auto resize the slider when viewport dimensions change
 
 	// Mouse events
-	$arrowRight.onclick = function(e) { 			slider.rotate('right'); slider.resetInterval(); }
-	$arrowLeft.onclick = function(e) { 				slider.rotate('left'); slider.resetInterval();  }
+	$arrowRight.onclick = function(e) { 			slider.rotate('right'); 						}
+	$arrowLeft.onclick = function(e) { 				slider.rotate('left');  						}
 	slider.getContainer().onmouseover=function() {	clearInterval(slider.getIntervalFunction()); 	}
 	slider.getContainer().onmouseout=function() {	slider.beginInterval();							}
 

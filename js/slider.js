@@ -105,14 +105,8 @@ Slider.prototype.getArrow = function(direction) {
 
 Slider.prototype.beginInterval = function() {
 	var that = this; //keeps the reference of the current object
-
-	return this.setIntervalFunction(setInterval(function () { that.rotate(that.getDirection()) }, that.getTimeInterval()));
-};
-
-//reset the interval when some arrow function is called
-Slider.prototype.resetInterval = function() {
-	clearInterval(this.getIntervalFunction());
-	return this.beginInterval(this.getDirection(), this.getIntervalFunction());
+	return this.setIntervalFunction(setInterval(function () { that.rotate(that.getDirection()) }, 
+															  that.getTimeInterval()));
 };
 
 //change the current slider dimension, it also set the slider to his initial position.
