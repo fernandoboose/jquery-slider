@@ -11,23 +11,23 @@ var main = function() {
 
 	imgList = [img, img2, img3, img4];
 
-	slider = new Slider($container, imgList);
+	slider = new Slider(containerId=$container, imgList=imgList);
 	$arrowRight = slider.getArrow('right');
 	$arrowLeft = slider.getArrow('left');
 
-
-	//The code below is pure magical <3 - don't touch it if you don't know what ur doing :)
+	// The code below is pure magical <3 - don't touch it if you don't know what ur doing :)
 
 	slider.renderElements(); //render the images and respective html elements on the screen
+	slider.beginInterval(); // Auto rotate the slider. comment or remove it if you don't want an auto-rotation 
 
-	window.onresize=function(){ slider.setResize() };
+	window.onresize=function(){ slider.setResize() }; // Auto resize the slider when viewport dimensions change
 
-	slider.beginInterval();
-	//rotate the slide to the right every 10 seconds. comment or remove it if you don't want an auto-rotation
-	// setInterval(function(){slider.rotate('right')}, 10000);
+	// Mouse events
+	$arrowRight.onclick = function(e) { 			slider.rotate('right'); slider.resetInterval(); }
+	$arrowLeft.onclick = function(e) { 				slider.rotate('left'); slider.resetInterval();  }
+	slider.getContainer().onmouseover=function() {	clearInterval(slider.getIntervalFunction()); 	}
+	slider.getContainer().onmouseout=function() {	slider.beginInterval();							}
 
-	$arrowRight.onclick = function(e){ slider.rotate('right'); slider.resetInterval();  }
-	$arrowLeft.onclick = function(e){ slider.rotate('left'); slider.resetInterval();  }
 };
 
 main();

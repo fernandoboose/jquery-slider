@@ -1,6 +1,6 @@
 /* Class Slider */
 
-var Slider = function(containerId, imgList, timeInterval, arrowRightId, arrowLeftId) {
+var Slider = function(containerId, imgList, timeInterval, direction, arrowRightId, arrowLeftId) {
 	this.$container = containerId;
 	
 	if(arrowRightId) { 
@@ -18,6 +18,10 @@ var Slider = function(containerId, imgList, timeInterval, arrowRightId, arrowLef
 	if(timeInterval) this.timeInterval = timeInterval;
 	else this.timeInterval = 10000; //10 seconds
 
+	if(direction) this.direction = direction;
+	else this.direction = 'right';
+
+	//the function
 	this.interval = null;
 
 	this.width = this.$container.offsetWidth;
@@ -49,6 +53,14 @@ Slider.prototype.setTimeInterval = function(timeInterval) {
 	this.timeInterval = timeInterval;
 };
 
+Slider.prototype.setIntervalFunction = function(interval) {
+	this.interval = interval;
+};
+
+Slider.prototype.setDirection = function(direction) {
+	this.direction = direction;
+};
+
 /* Getters */
 
 Slider.prototype.getContainer = function() {
@@ -73,6 +85,14 @@ Slider.prototype.getTimeInterval = function() {
 	return this.timeInterval;
 };
 
+Slider.prototype.getIntervalFunction = function() {
+	return this.interval;
+};
+
+Slider.prototype.getDirection = function() {
+	return this.direction;
+};
+
 Slider.prototype.getArrow = function(direction) {
 	if(direction == 'right') return this.$arrowRight;
 	else if(direction == 'left') return this.$arrowLeft;
@@ -83,17 +103,16 @@ Slider.prototype.getArrow = function(direction) {
 
 /* Screen */
 
-Slider.prototype.beginInterval = function(direction, timeInterval) {
+Slider.prototype.beginInterval = function() {
 	var that = this; //keeps the reference of the current object
-	if(timeInterval) this.setTimeInterval(timeInterval);
-	if(!direction) direction = 'right';
-	this.interval = setInterval(function(){ that.rotate(direction) }, this.timeInterval);
-	return this.interval;
+
+	return this.setIntervalFunction(setInterval(function () { that.rotate(that.getDirection()) }, that.getTimeInterval()));
 };
 
 //reset the interval when some arrow function is called
 Slider.prototype.resetInterval = function() {
-	clearInterval(this.interval);
+	clearInterval(this.getIntervalFunction());
+	return this.beginInterval(this.getDirection(), this.getIntervalFunction());
 };
 
 //change the current slider dimension, it also set the slider to his initial position.
@@ -171,7 +190,6 @@ Slider.prototype.rotate = function(direction) {
 	} 
 	else if(!next){
 		//last right element, first left element
-
 		var first = allImages[0];
 
 		[].forEach.call(allImages,
