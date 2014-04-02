@@ -23,10 +23,10 @@ var main = function() {
 	window.onresize=function(){ slider.setResize() }; // Auto resize the slider when viewport dimensions change
 
 	// Mouse events
-	$arrowRight.onclick = function(e) {	slider.rotate('right');	}
-	$arrowLeft.onclick = function(e) {	slider.rotate('left');	}
-	slider.getContainer().onmouseover=function() {	clearInterval(slider.getIntervalFunction());	}
-	slider.getContainer().onmouseout=function() {	slider.beginInterval();	}
+	$arrowRight.onclick = function(e) {	slider.rotate('right');	} // rotate slider to the right
+	$arrowLeft.onclick = function(e) {	slider.rotate('left');	} // rotate slider to the left
+	slider.getContainer().onmouseover=function() {	clearInterval(slider.getIntervalFunction());	} //stop rotation when mouse hover the slider
+	slider.getContainer().onmouseout=function() {	slider.beginInterval();	} //begin rotation when mouse leave the slider
 
 };
 
